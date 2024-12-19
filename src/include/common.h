@@ -155,8 +155,8 @@ typedef struct expresslrs_rf_pref_params_s
     uint16_t TOA;                         // time on air in microseconds
     uint16_t DisconnectTimeoutMs;         // Time without a packet before receiver goes to disconnected (ms)
     uint16_t RxLockTimeoutMs;             // Max time to go from tentative -> connected state on receiver (ms)
-    uint16_t SyncPktIntervalDisconnected; // how often to send the PACKET_TYPE_SYNC (ms) when there is no response from RX
-    uint16_t SyncPktIntervalConnected;    // how often to send the PACKET_TYPE_SYNC (ms) when there we have a connection
+    uint16_t SyncPktIntervalDisconnected; // how often to send the PACKET_TYPE_SYNC (ms) when there is no response from RX //POI
+    uint16_t SyncPktIntervalConnected;    // how often to send the PACKET_TYPE_SYNC (ms) when there we have a connection //POI
     int8_t DynpowerSnrThreshUp;           // Request a raise in power if the reported (average) SNR is at or below this
                                           // or DYNPOWER_UPTHRESH_SNR_NONE to use RSSI
     int8_t DynpowerSnrThreshDn;           // Like DynpowerSnrUpThreshold except to lower power
@@ -327,7 +327,7 @@ extern expresslrs_mod_settings_s *ExpressLRS_currAirRate_Modparams;
 extern expresslrs_rf_pref_params_s *ExpressLRS_currAirRate_RFperfParams;
 extern uint32_t ChannelData[CRSF_NUM_CHANNELS]; // Current state of channels, CRSF format
 
-uint32_t uidMacSeedGet();
+uint32_t uidMacSeedGet();//POI
 bool isDualRadio();
 void EnterBindingModeSafely(); // defined in rx_main/tx_main //POI
 

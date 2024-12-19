@@ -333,7 +333,7 @@ void SetRFLinkRate(uint8_t index, bool bindMode) // Set speed of RF link
     Radio.Config(ModParams->bw, ModParams->sf, ModParams->cr, FHSSgetInitialFreq(),
                  ModParams->PreambleLen, invertIQ, ModParams->PayloadLength, 0
 #if defined(RADIO_SX128X)
-                 , uidMacSeedGet(), OtaCrcInitializer, (ModParams->radio_type == RADIO_TYPE_SX128x_FLRC)
+                 , uidMacSeedGet(), OtaCrcInitializer, (ModParams->radio_type == RADIO_TYPE_SX128x_FLRC)//POI
 #endif
 #if defined(RADIO_LR1121)
                , ModParams->radio_type == RADIO_TYPE_LR1121_GFSK_900 || ModParams->radio_type == RADIO_TYPE_LR1121_GFSK_2G4, (uint8_t)UID[5], (uint8_t)UID[4]
@@ -1104,7 +1104,7 @@ static bool ICACHE_RAM_ATTR ProcessRfPacket_SYNC(uint32_t const now, OTA_Sync_s 
     return false;
 }
 
-bool ICACHE_RAM_ATTR ProcessRFPacket(SX12xxDriverCommon::rx_status const status)
+bool ICACHE_RAM_ATTR ProcessRFPacket(SX12xxDriverCommon::rx_status const status) //POI !!!
 {
     if (status != SX12xxDriverCommon::SX12XX_RX_OK)
     {
@@ -1117,7 +1117,7 @@ bool ICACHE_RAM_ATTR ProcessRFPacket(SX12xxDriverCommon::rx_status const status)
     uint32_t const beginProcessing = micros();
 
     OTA_Packet_s * const otaPktPtr = (OTA_Packet_s * const)Radio.RXdataBuffer;
-    if (!OtaValidatePacketCrc(otaPktPtr))
+    if (!OtaValidatePacketCrc(otaPktPtr))//POI
     {
         DBGVLN("CRC error");
         #if defined(DEBUG_RX_SCOREBOARD)
@@ -1138,7 +1138,7 @@ bool ICACHE_RAM_ATTR ProcessRFPacket(SX12xxDriverCommon::rx_status const status)
     case PACKET_TYPE_RCDATA: //Standard RC Data Packet
         ProcessRfPacket_RC(otaPktPtr);
         break;
-    case PACKET_TYPE_SYNC: //sync packet from master
+    case PACKET_TYPE_SYNC: //sync packet from master //POI
         doStartTimer = ProcessRfPacket_SYNC(now,
             OtaIsFullRes ? &otaPktPtr->full.sync.sync : &otaPktPtr->std.sync)
             && !InBindingMode;
@@ -1727,7 +1727,7 @@ static void ExitBindingMode()//POI
     config.Commit();
 
     OtaUpdateCrcInitFromUid();
-    FHSSrandomiseFHSSsequence(uidMacSeedGet());
+    FHSSrandomiseFHSSsequence(uidMacSeedGet());//POI
 
     webserverPreventAutoStart = true;
 
@@ -2045,7 +2045,7 @@ void setup()
 
         setupBindingFromConfig();
 
-        FHSSrandomiseFHSSsequence(uidMacSeedGet());
+        FHSSrandomiseFHSSsequence(uidMacSeedGet());//POI
 
         setupRadio();
 

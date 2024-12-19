@@ -47,11 +47,11 @@ const fhss_config_t *FHSSconfig;
 const fhss_config_t *FHSSconfigDualBand;
 
 // Actual sequence of hops as indexes into the frequency list
-uint8_t FHSSsequence[FHSS_SEQUENCE_LEN];
+uint8_t FHSSsequence[FHSS_SEQUENCE_LEN];//POI
 uint8_t FHSSsequence_DualBand[FHSS_SEQUENCE_LEN];
 
 // Which entry in the sequence we currently are on
-uint8_t volatile FHSSptr;
+uint8_t volatile FHSSptr; //POI
 
 // Channel for sync packets and initial connection establishment
 uint_fast8_t sync_channel;
@@ -72,7 +72,7 @@ bool FHSSuseDualBand = false;
 uint16_t primaryBandCount;
 uint16_t secondaryBandCount;
 
-void FHSSrandomiseFHSSsequence(const uint32_t seed)
+void FHSSrandomiseFHSSsequence(const uint32_t seed)//POI
 {
     FHSSconfig = &domains[firmwareOptions.domain];
     sync_channel = FHSSconfig->freq_count / 2;
@@ -83,7 +83,7 @@ void FHSSrandomiseFHSSsequence(const uint32_t seed)
     DBGLN("Number of FHSS frequencies = %u", FHSSconfig->freq_count);
     DBGLN("Sync channel = %u", sync_channel);
 
-    FHSSrandomiseFHSSsequenceBuild(seed, FHSSconfig->freq_count, sync_channel, FHSSsequence);
+    FHSSrandomiseFHSSsequenceBuild(seed, FHSSconfig->freq_count, sync_channel, FHSSsequence); //POI
 
 #if defined(RADIO_LR1121)
     FHSSconfigDualBand = &domainsDualBand[0];
@@ -114,7 +114,7 @@ Approach:
   another random entry, excluding the sync channel.
 
 */
-void FHSSrandomiseFHSSsequenceBuild(const uint32_t seed, uint32_t freqCount, uint_fast8_t syncChannel, uint8_t *inSequence)
+void FHSSrandomiseFHSSsequenceBuild(const uint32_t seed, uint32_t freqCount, uint_fast8_t syncChannel, uint8_t *inSequence)//POI
 {
     // reset the pointer (otherwise the tests fail)
     FHSSptr = 0;

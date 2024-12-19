@@ -22,7 +22,7 @@ extern bool isArmed;
 #define PACKET_TYPE_DATA        0b01
 // Uplink only header types
 #define PACKET_TYPE_RCDATA      0b00
-#define PACKET_TYPE_SYNC        0b10
+#define PACKET_TYPE_SYNC        0b10 //POI
 // Downlink only header types
 #define PACKET_TYPE_LINKSTATS   0b00
 
@@ -165,7 +165,7 @@ typedef struct {
         OTA_Packet4_s std;
         OTA_Packet8_s full;
     };
-} PACKED OTA_Packet_s;
+} PACKED OTA_Packet_s;//POI
 
 extern bool OtaIsFullRes;
 extern volatile uint8_t OtaNonce;

@@ -204,7 +204,7 @@ uint8_t TLMBurstMaxForRateRatio(uint16_t const rateHz, uint8_t const ratioDiv)
     return retVal;
 }
 
-uint32_t uidMacSeedGet()
+uint32_t uidMacSeedGet() //POI
 {
     const uint32_t macSeed = ((uint32_t)UID[2] << 24) + ((uint32_t)UID[3] << 16) +
                              ((uint32_t)UID[4] << 8) + (UID[5]^OTA_VERSION_ID);
