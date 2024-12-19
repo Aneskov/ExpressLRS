@@ -416,7 +416,7 @@ bool luaHandleUpdateParameter()
     // whole stack needs a bit of a refactor to not have similar code duplicated all over
     case CRSF_FRAMETYPE_COMMAND:
       if (parameterIndex == CRSF_COMMAND_SUBCMD_RX && parameterArg == CRSF_COMMAND_SUBCMD_RX_BIND)
-        EnterBindingModeSafely();
+        EnterBindingModeSafely();//POI
       break;
 #endif
 

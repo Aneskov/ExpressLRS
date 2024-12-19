@@ -435,7 +435,7 @@ static void luahandSimpleSendCmd(struct luaPropertiesCommon *item, uint8_t arg)
     if ((void *)item == (void *)&luaBind)
     {
       msg = "Binding...";
-      EnterBindingModeSafely();
+      EnterBindingModeSafely();//POI
     }
     else if ((void *)item == (void *)&luaVtxSend)
     {

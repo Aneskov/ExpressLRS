@@ -133,7 +133,7 @@ void SerialCRSF::processBytes(uint8_t *bytes, uint16_t size)
         }
         if (telemetry.ShouldCallEnterBind())
         {
-            EnterBindingModeSafely();
+            EnterBindingModeSafely();//POI
         }
         if (telemetry.ShouldCallUpdateModelMatch())
         {

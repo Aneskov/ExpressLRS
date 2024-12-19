@@ -1684,7 +1684,7 @@ static void cycleRfMode(unsigned long now)
     } // if time to switch RF mode
 }
 
-static void EnterBindingMode()
+static void EnterBindingMode()//POI
 {
     if (InBindingMode)
     {
@@ -1711,7 +1711,7 @@ static void EnterBindingMode()
     devicesTriggerEvent();
 }
 
-static void ExitBindingMode()
+static void ExitBindingMode()//POI
 {
     if (!InBindingMode)
     {
@@ -1744,7 +1744,7 @@ static void ExitBindingMode()
     devicesTriggerEvent();
 }
 
-static void updateBindingMode(unsigned long now)
+static void updateBindingMode(unsigned long now) //POI
 {
     // Exit binding mode if the config has been modified, indicating UID has been set
     if (InBindingMode && config.IsModified())
@@ -1771,7 +1771,7 @@ static void updateBindingMode(unsigned long now)
 #endif
 
     // If the power on counter is >=3, enter binding, the counter will be reset after 2s
-    else if (!InBindingMode && config.GetPowerOnCounter() >= 3)
+    else if (!InBindingMode && config.GetPowerOnCounter() >= 3)//POI
     {
         // Never enter wifi if forced to binding mode
         webserverPreventAutoStart = true;
@@ -1780,7 +1780,7 @@ static void updateBindingMode(unsigned long now)
     }
 
     // If the eeprom is indicating that we're not bound, enter binding
-    else if (!UID_IS_BOUND(UID) && !InBindingMode)
+    else if (!UID_IS_BOUND(UID) && !InBindingMode)//POI
     {
         DBGLN("RX has not been bound, enter binding mode");
         EnterBindingMode();
@@ -1815,7 +1815,7 @@ static void updateBindingMode(unsigned long now)
     }
 }
 
-void EnterBindingModeSafely()
+void EnterBindingModeSafely()//POI
 {
     // Will not enter Binding mode if in the process of a passthrough update
     // or currently binding
@@ -2060,7 +2060,7 @@ void setup()
         }
     }
 
-    registerButtonFunction(ACTION_BIND, EnterBindingModeSafely);
+    //registerButtonFunction(ACTION_BIND, EnterBindingModeSafely);//POI: bind disabled
     registerButtonFunction(ACTION_RESET_REBOOT, resetConfigAndReboot);
 
     devicesStart();

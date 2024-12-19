@@ -426,12 +426,12 @@ static void executeWiFi(bool init)
 }
 
 // Bind
-static void displayBindConfirm(bool init)
+static void displayBindConfirm(bool init)//POI
 {
     display->displayBindConfirm();
 }
 
-static void executeBind(bool init)
+static void executeBind(bool init)//POI
 {
     if (init)
     {

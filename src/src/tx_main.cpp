@@ -944,7 +944,7 @@ void SendUIDOverMSP()
   MspSender.SetDataToTransmit(MSPDataPackage, 5);
 }
 
-static void EnterBindingMode()
+static void EnterBindingMode()//POI
 {
   if (InBindingMode)
       return;
@@ -971,7 +971,7 @@ static void EnterBindingMode()
   DBGLN("Entered binding mode at freq = %d", Radio.currFreq);
 }
 
-static void ExitBindingMode()
+static void ExitBindingMode()//POI
 {
   if (!InBindingMode)
     return;
@@ -987,7 +987,7 @@ static void ExitBindingMode()
   DBGLN("Exiting binding mode");
 }
 
-void EnterBindingModeSafely()
+void EnterBindingModeSafely() //POI
 {
   // TX can always enter binding mode safely as the function handles stopping the transmitter
   EnterBindingMode();
@@ -1305,7 +1305,7 @@ void setup()
     Radio.RXdoneCallback = &RXdoneISR;
     Radio.TXdoneCallback = &TXdoneISR;
 
-    handset->registerCallbacks(UARTconnected, firmwareOptions.is_airport ? nullptr : UARTdisconnected, ModelUpdateReq, EnterBindingModeSafely);
+    handset->registerCallbacks(UARTconnected, firmwareOptions.is_airport ? nullptr : UARTdisconnected, ModelUpdateReq, EnterBindingModeSafely);//POI
 
     DBGLN("ExpressLRS TX Module Booted...");
 
@@ -1360,7 +1360,7 @@ void setup()
     TxBackpack = new NullStream();
   }
 
-  registerButtonFunction(ACTION_BIND, EnterBindingMode);
+  //registerButtonFunction(ACTION_BIND, EnterBindingMode);//POI :bind disabled
   registerButtonFunction(ACTION_INCREASE_POWER, cyclePower);
 
   devicesStart();

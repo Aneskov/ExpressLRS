@@ -193,7 +193,7 @@ typedef enum : uint8_t {
     ACTION_GOTO_VTX_CHANNEL,
     ACTION_SEND_VTX,
     ACTION_START_WIFI,
-    ACTION_BIND,
+    ACTION_BIND, //POI
     ACTION_BLE_JOYSTICK,
     ACTION_RESET_REBOOT,
 
@@ -230,7 +230,7 @@ enum eServoOutputFailsafeMode : uint8_t
 
 enum eSerialProtocol : uint8_t
 {
-    PROTOCOL_CRSF,
+    PROTOCOL_CRSF, //POI
     PROTOCOL_INVERTED_CRSF,
     PROTOCOL_SBUS,
     PROTOCOL_INVERTED_SBUS,
@@ -265,7 +265,7 @@ enum eFailsafeMode : uint8_t
     FAILSAFE_SET_POSITION
 };
 
-enum eAuxChannels : uint8_t
+enum eAuxChannels : uint8_t //POI
 {
     AUX1 = 4,
     AUX2 = 5,
@@ -317,10 +317,10 @@ uint8_t TLMratioEnumToValue(expresslrs_tlm_ratio_e const enumval);
 uint8_t TLMBurstMaxForRateRatio(uint16_t const rateHz, uint8_t const ratioDiv);
 uint8_t enumRatetoIndex(expresslrs_RFrates_e const eRate);
 
-extern uint8_t UID[UID_LEN];
+extern uint8_t UID[UID_LEN];//POI
 extern bool connectionHasModelMatch;
 extern bool teamraceHasModelMatch;
-extern bool InBindingMode;
+extern bool InBindingMode;//POI
 extern uint8_t ExpressLRS_currTlmDenom;
 extern connectionState_e connectionState;
 extern expresslrs_mod_settings_s *ExpressLRS_currAirRate_Modparams;
@@ -329,7 +329,7 @@ extern uint32_t ChannelData[CRSF_NUM_CHANNELS]; // Current state of channels, CR
 
 uint32_t uidMacSeedGet();
 bool isDualRadio();
-void EnterBindingModeSafely(); // defined in rx_main/tx_main
+void EnterBindingModeSafely(); // defined in rx_main/tx_main //POI
 
 #if defined(RADIO_LR1121)
 bool isSupportedRFRate(uint8_t index);

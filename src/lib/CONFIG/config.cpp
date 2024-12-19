@@ -683,7 +683,7 @@ TxConfig::SetDefaults(bool commit)
         .val = {
             .color = 226,   // R:255 G:0 B:182
             .actions = {
-                {false, 2, ACTION_BIND},
+                {false, 2, ACTION_BIND},//POI
                 {true, 0, ACTION_INCREASE_POWER}
             }
         }

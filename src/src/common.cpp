@@ -155,10 +155,10 @@ uint8_t ICACHE_RAM_ATTR enumRatetoIndex(expresslrs_RFrates_e const eRate)
 }
 
 // Connection state information
-uint8_t UID[UID_LEN] = {0};  // "bind phrase" ID
+uint8_t UID[UID_LEN] = {0};  // "bind phrase" ID //POI
 bool connectionHasModelMatch = false;
 bool teamraceHasModelMatch = true; // true if isTx or teamrace disabled or (enabled and channel in correct postion)
-bool InBindingMode = false;
+bool InBindingMode = false; //POI
 uint8_t ExpressLRS_currTlmDenom = 1;
 connectionState_e connectionState = disconnected;
 expresslrs_mod_settings_s *ExpressLRS_currAirRate_Modparams = nullptr;
